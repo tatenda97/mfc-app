@@ -18,10 +18,10 @@ export class FarmService {
   ): Promise<Farm> {
 
       // check if the farmer is present in the database
-     const farmer = this.farmerRepository.find()
-     if(!farmer){
-        throw new NotFoundException('Farmer with not found');  
-     }
+    //  const farmer = this.farmerRepository.find()
+    //  if(!farmer){
+    //     throw new NotFoundException('Farmer with not found');  
+    //  }
     return await this.farmRepository.createFarm(createFarmDto);
   }
 

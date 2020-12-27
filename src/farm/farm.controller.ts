@@ -11,7 +11,7 @@ import {
   import { CreateFarmDTO } from './dto/create-farm.dto';
   import { Farm } from './farm.entity';
 
-@Controller('farmer')
+@Controller('farm')
 export class FarmController {
     
 constructor(private farmService: FarmService) {}
@@ -31,7 +31,7 @@ public async getFarms(): Promise<Farm[]> {
 }
 
 @Get('/:farmId')
-public async getFarmer(@Param('farmerId') farmId: number) {
+public async getFarmer(@Param('farmId') farmId: number) {
   const farm = await this.farmService.getFarm(farmId);
   return farm;
 }
