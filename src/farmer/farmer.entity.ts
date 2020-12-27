@@ -1,4 +1,5 @@
-import { PrimaryGeneratedColumn, BaseEntity, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, BaseEntity, Column, Entity, OneToMany } from 'typeorm';
+import { Farm } from 'src/farm/farm.entity';
 
 @Entity()
 export class Farmer extends BaseEntity {
@@ -22,5 +23,8 @@ export class Farmer extends BaseEntity {
 
   @Column()
   description: string;
+
+  @OneToMany(() => Farm, (farm: Farm) => farm.owner)
+  public farms: Farm[];
 
 }

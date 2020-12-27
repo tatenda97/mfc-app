@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { FarmerModule } from './farmer/farmer.module';
+import { FarmModule } from './farm/farm.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { FarmerModule } from './farmer/farmer.module';
       synchronize: true,
     }),
     FarmerModule,
+    FarmModule,
   ],
   controllers: [AppController],
   providers: [AppService],
