@@ -8,6 +8,8 @@ import { FarmModule } from './farm/farm.module';
 import { ContractorModule } from './contractor/contractor.module';
 import { ContractModule } from './contract/contract.module';
 import { FarmEquipmentModule } from './farm-equipment/farm-equipment.module';
+import { ContractTermsModule } from './contract-terms/contract-terms.module';
+import { ContractFormModule } from './contract-form/contract-form.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { FarmEquipmentModule } from './farm-equipment/farm-equipment.module';
     ContractorModule,
     ContractModule,
     FarmEquipmentModule,
+    ContractTermsModule,
+    ContractFormModule,
   ],
   controllers: [AppController],
   providers: [AppService],
