@@ -6,6 +6,8 @@ import { join } from 'path';
 import { FarmerModule } from './farmer/farmer.module';
 import { FarmModule } from './farm/farm.module';
 import { ContractorModule } from './contractor/contractor.module';
+import { ContractModule } from './contract/contract.module';
+import { FarmEquipmentModule } from './farm-equipment/farm-equipment.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { ContractorModule } from './contractor/contractor.module';
     FarmerModule,
     FarmModule,
     ContractorModule,
+    ContractModule,
+    FarmEquipmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
