@@ -10,6 +10,7 @@ import { ContractModule } from './contract/contract.module';
 import { FarmEquipmentModule } from './farm-equipment/farm-equipment.module';
 import { ContractTermsModule } from './contract-terms/contract-terms.module';
 import { ContractFormModule } from './contract-form/contract-form.module';
+import { FarmerAssetModule } from './farmer-asset/farmer-asset.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ContractFormModule } from './contract-form/contract-form.module';
     FarmEquipmentModule,
     ContractTermsModule,
     ContractFormModule,
+    FarmerAssetModule,
   ],
   controllers: [AppController],
   providers: [AppService],
