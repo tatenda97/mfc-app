@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { FarmerModule } from './farmer/farmer.module';
 import { FarmModule } from './farm/farm.module';
+import { ContractorModule } from './contractor/contractor.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { FarmModule } from './farm/farm.module';
     }),
     FarmerModule,
     FarmModule,
+    ContractorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

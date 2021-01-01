@@ -3,14 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Farm } from './farm.entity';
 import { CreateFarmDTO } from './dto/create-farm.dto';
 import { FarmRepository } from './farm.repository';
-import { FarmerRepository } from 'src/farmer/farmer.repository';
+
 
 @Injectable()
 export class FarmService {
   constructor(
     @InjectRepository(FarmRepository)
     private farmRepository: FarmRepository,
-    private farmerRepository:FarmerRepository,
   ) {}
 
   public async createFarm(
