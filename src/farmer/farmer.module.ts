@@ -7,6 +7,6 @@ import { FarmerRepository } from './farmer.repository';
 @Module({
   imports: [TypeOrmModule.forFeature([FarmerRepository])],
   providers: [FarmerService],
-  controllers: [FarmerController]
+  controllers: [FarmerController],
 })
 export class FarmerModule {}
