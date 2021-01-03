@@ -15,7 +15,7 @@ export class ContractInput extends BaseEntity {
   @Column()
   inputName: string;
 
-  @Column()
+  @Column({ default: 'Kuda test' })
   description: string;
 
   @Column()

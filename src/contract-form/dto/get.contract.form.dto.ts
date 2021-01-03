@@ -1,7 +1,10 @@
 import { IsString, IsDate, IsNumber, IsArray } from 'class-validator';
 import { ContractInput } from '../contract.input.entity';
 
-export class CreateContractFormDTO {
+export class ContractFormDTO {
+  @IsNumber()
+  id: number;
+
   @IsString()
   farmerName: string;
 
