@@ -4,11 +4,15 @@ import { CreateFarmerDTO } from './dto/create-farmer.dto';
 
 @EntityRepository(Farmer)
 export class FarmerRepository extends Repository<Farmer> {
-
-  public async createFarmer(
-    createFarmerDto: CreateFarmerDTO,
-  ): Promise<Farmer> {
-    const { name, surname, nationalID, gender, dateOfBirth, description} = createFarmerDto;
+  public async createFarmer(createFarmerDto: CreateFarmerDTO): Promise<Farmer> {
+    const {
+      name,
+      surname,
+      nationalID,
+      gender,
+      dateOfBirth,
+      description,
+    } = createFarmerDto;
 
     const farmer = new Farmer();
     farmer.name = name;
@@ -18,7 +22,7 @@ export class FarmerRepository extends Repository<Farmer> {
     farmer.dateOfBirth = dateOfBirth;
     farmer.gender = gender;
     farmer.description = description;
-    
+
     await farmer.save();
     return farmer;
   }
@@ -27,7 +31,14 @@ export class FarmerRepository extends Repository<Farmer> {
     createFarmerDto: CreateFarmerDTO,
     editedFarmer: Farmer,
   ): Promise<Farmer> {
-    const { name, surname, nationalID, gender, dateOfBirth, description} = createFarmerDto;
+    const {
+      name,
+      surname,
+      nationalID,
+      gender,
+      dateOfBirth,
+      description,
+    } = createFarmerDto;
 
     editedFarmer.name = name;
     editedFarmer.surname = surname;

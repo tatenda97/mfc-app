@@ -4,18 +4,15 @@ import { CreateFarmDTO } from './dto/create-farm.dto';
 
 @EntityRepository(Farm)
 export class FarmRepository extends Repository<Farm> {
-
-  public async createFarm(
-    createFarmerDto: CreateFarmDTO,
-  ): Promise<Farm> {
-    const { name,description,plotNumber,ownerId} = createFarmerDto;
+  public async createFarm(createFarmerDto: CreateFarmDTO): Promise<Farm> {
+    const { name, description, plotNumber, ownerId } = createFarmerDto;
 
     const farm = new Farm();
     farm.name = name;
     farm.description = description;
     farm.plotNumber = plotNumber;
     farm.ownerId = ownerId;
-    
+
     await farm.save();
     return farm;
   }
@@ -24,7 +21,7 @@ export class FarmRepository extends Repository<Farm> {
     createFarmDto: CreateFarmDTO,
     editedFarm: Farm,
   ): Promise<Farm> {
-    const { name,description,plotNumber,ownerId} = createFarmDto;
+    const { name, description, plotNumber, ownerId } = createFarmDto;
 
     editedFarm.name = name;
     editedFarm.description = description;

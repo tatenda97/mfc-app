@@ -1,4 +1,10 @@
-import { PrimaryGeneratedColumn, BaseEntity, Column, Entity, ManyToOne } from 'typeorm';
+import {
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+} from 'typeorm';
 import { Farmer } from 'src/farmer/farmer.entity';
 
 @Entity()
@@ -16,9 +22,8 @@ export class Farm extends BaseEntity {
   plotNumber: string;
 
   @Column()
-  ownerId: String;
+  ownerId: string;
 
   @ManyToOne(() => Farmer, (owner: Farmer) => owner.farms)
   public owner: Farmer;
-
 }

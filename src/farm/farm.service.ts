@@ -4,7 +4,6 @@ import { Farm } from './farm.entity';
 import { CreateFarmDTO } from './dto/create-farm.dto';
 import { FarmRepository } from './farm.repository';
 
-
 @Injectable()
 export class FarmService {
   constructor(
@@ -12,14 +11,11 @@ export class FarmService {
     private farmRepository: FarmRepository,
   ) {}
 
-  public async createFarm(
-    createFarmDto: CreateFarmDTO,
-  ): Promise<Farm> {
-
-      // check if the farmer is present in the database
+  public async createFarm(createFarmDto: CreateFarmDTO): Promise<Farm> {
+    // check if the farmer is present in the database
     //  const farmer = this.farmerRepository.find()
     //  if(!farmer){
-    //     throw new NotFoundException('Farmer with not found');  
+    //     throw new NotFoundException('Farmer with not found');
     //  }
     return await this.farmRepository.createFarm(createFarmDto);
   }
@@ -28,7 +24,6 @@ export class FarmService {
     return await this.farmRepository.find();
   }
 
-
   public async getFarm(farmId: number): Promise<Farm> {
     const foundFarm = await this.farmRepository.findOne(farmId);
     if (!foundFarm) {
@@ -36,7 +31,6 @@ export class FarmService {
     }
     return foundFarm;
   }
-
 
   public async editFarm(
     farmId: number,
@@ -48,7 +42,6 @@ export class FarmService {
     }
     return this.farmRepository.editFarm(createFarmDto, editedFarm);
   }
-
 
   public async deleteFarm(farmId: number): Promise<void> {
     await this.farmRepository.delete(farmId);
