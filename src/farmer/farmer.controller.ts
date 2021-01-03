@@ -19,8 +19,8 @@ export class FarmerController {
   public async createFarmer(
     @Body() createFarmerDto: CreateFarmerDTO,
   ): Promise<Farmer> {
-    const product = await this.farmerService.createFarmer(createFarmerDto);
-    return product;
+    const farmer = await this.farmerService.createFarmer(createFarmerDto);
+    return farmer;
   }
 
   @Get('all')
@@ -48,7 +48,7 @@ export class FarmerController {
   }
 
   @Delete('/delete/:farmerId')
-  public async deleteProduct(@Param('farmerId') farmerId: number) {
+  public async deleteFarmer(@Param('farmerId') farmerId: number) {
     const deletedFarmer = await this.farmerService.deleteFarmer(farmerId);
     return deletedFarmer;
   }
