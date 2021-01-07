@@ -53,6 +53,5 @@ export class ContractFormDTO {
   @IsDate()
   applicationDate: Date;
 
-  @IsArray()
   contractInputs: ContractInput[];
 }

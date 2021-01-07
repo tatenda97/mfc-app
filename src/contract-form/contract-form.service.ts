@@ -6,6 +6,7 @@ import { ContractFormRepository } from './contract.form.repository';
 import { ContractInputRepository } from './contract.input.repository';
 import { CreateContractInputDTO } from './dto/create.contract.input.dto';
 import { ContractFormDTO } from './dto/get.contract.form.dto';
+import { ContractInput } from './contract.input.entity';
 
 @Injectable()
 export class ContractFormService {
@@ -20,7 +21,7 @@ export class ContractFormService {
   ): Promise<ContractFormDTO> {
     const contractInputs = createContractFormDto.contractInputs;
     let contractFormSaved = new ContractForm();
-    const contractInputsList = [];
+    let contractInputsList = [];
     contractFormSaved = await this.contractFormRepository.createContractForm(
       createContractFormDto,
     );
@@ -33,17 +34,11 @@ export class ContractFormService {
       inputDto.quantity = input.quantity;
       inputDto.unitCost = input.unitCost;
       inputDto.weight = input.weight;
-      contractInputsList.push(
-        await this.contractInputRepository.createContractInput(inputDto),
-      );
+      let contractInput:ContractInput = await this.contractInputRepository.createContractInput(inputDto);
+      contractInputsList.push(contractInput);
+  
     });
-    // const contractInputsList: ContractInput[] = await this.contractInputRepository
-    //   .createQueryBuilder('contract_input')
-    //   .where('contract_input.contractId =:contractId', {
-    //     contractId: contractFormSaved.id,
-    //   })
-    //   .execute();
-
+   
     const contractForm = new ContractFormDTO();
     contractForm.id = contractFormSaved.id;
     contractForm.farmerName = contractFormSaved.farmerName;
@@ -64,11 +59,14 @@ export class ContractFormService {
     contractForm.repaymentValue = contractFormSaved.repaymentValue;
     contractForm.applicationDate = contractFormSaved.applicationDate;
     contractForm.contractInputs = contractInputsList;
+    let inputList:ContractInput[] = await this.contractInputRepository.getByContractId(contractFormSaved.id);
+    contractForm.contractInputs = inputList;
+
 
     return contractForm;
   }
   public async getContactForms(): Promise<ContractForm[]> {
-    return await this.contractFormRepository.find();
+    return await this.contractFormRepository.find({relations: ["contract_input"]});
   }
 
   public async getContractForm(contractFormId: number): Promise<ContractForm> {

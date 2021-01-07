@@ -41,4 +41,14 @@ export class ContractInputRepository extends Repository<ContractInput> {
 
     return editedContractInput;
   }
+
+  public async getByContractId(contractId:number ):Promise<ContractInput[]>{
+
+  return await this.createQueryBuilder('contract_input')
+      .where('contract_input.contractId =:contractId', {
+        contractId: contractId,
+      })
+      .execute();
+  }
+   
 }
