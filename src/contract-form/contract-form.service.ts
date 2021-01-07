@@ -45,7 +45,7 @@ export class ContractFormService {
     //   .execute();
 
     const contractForm = new ContractFormDTO();
-    contractForm.id = contractForm.id;
+    contractForm.id = contractFormSaved.id;
     contractForm.farmerName = contractFormSaved.farmerName;
     contractForm.farmerIDNumber = contractFormSaved.farmerIDNumber;
     contractForm.contactNumber = contractFormSaved.contactNumber;
