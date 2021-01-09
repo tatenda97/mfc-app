@@ -34,6 +34,9 @@ export class Farmer extends BaseEntity {
   @OneToMany(() => Farm, (farm: Farm) => farm.owner)
   public farms: Farm[];
 
-  @OneToMany(() => FarmerEquipment, (equipments: FarmerEquipment) => equipments.farmer)
+  @OneToMany(
+    () => FarmerEquipment,
+    (equipments: FarmerEquipment) => equipments.farmer,
+  )
   public equipments: FarmerEquipment[];
 }
