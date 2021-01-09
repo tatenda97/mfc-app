@@ -5,7 +5,6 @@ import { CreateContractFormDTO } from './dto/create-contract.form.dto';
 import { ContractFormRepository } from './contract.form.repository';
 import { ContractInputRepository } from './contract.input.repository';
 import { CreateContractInputDTO } from './dto/create.contract.input.dto';
-import { ContractFormDTO } from './dto/get.contract.form.dto';
 import { ContractInput } from './contract.input.entity';
 
 @Injectable()
@@ -18,10 +17,10 @@ export class ContractFormService {
 
   public async createContractForm(
     createContractFormDto: CreateContractFormDTO,
-  ): Promise<ContractFormDTO> {
+  ): Promise<ContractForm> {
     const contractInputs = createContractFormDto.contractInputs;
     let contractFormSaved = new ContractForm();
-    let contractInputsList = [];
+    const contractInputsList = [];
     contractFormSaved = await this.contractFormRepository.createContractForm(
       createContractFormDto,
     );
@@ -34,44 +33,26 @@ export class ContractFormService {
       inputDto.quantity = input.quantity;
       inputDto.unitCost = input.unitCost;
       inputDto.weight = input.weight;
-      let contractInput:ContractInput = await this.contractInputRepository.createContractInput(inputDto);
+      const contractInput: ContractInput = await this.contractInputRepository.createContractInput(
+        inputDto,
+      );
       contractInputsList.push(contractInput);
-  
     });
-   
-    const contractForm = new ContractFormDTO();
-    contractForm.id = contractFormSaved.id;
-    contractForm.farmerName = contractFormSaved.farmerName;
-    contractForm.farmerIDNumber = contractFormSaved.farmerIDNumber;
-    contractForm.contactNumber = contractFormSaved.contactNumber;
-    contractForm.village = contractFormSaved.village;
-    contractForm.plotNumber = contractFormSaved.plotNumber;
-    contractForm.contractorName = contractFormSaved.contractorName;
-    contractForm.contractorID = contractFormSaved.contractorID;
-    contractForm.representativeName = contractFormSaved.representativeName;
-    contractForm.representativeID = contractFormSaved.representativeID;
-    contractForm.representativePhoneNumber =
-      contractFormSaved.representativePhoneNumber;
-    contractForm.contractCategory = contractFormSaved.contractCategory;
-    contractForm.contractTenure = contractFormSaved.contractTenure;
-    contractForm.contractDescription = contractFormSaved.contractDescription;
-    contractForm.contractValue = contractFormSaved.contractValue;
-    contractForm.repaymentValue = contractFormSaved.repaymentValue;
-    contractForm.applicationDate = contractFormSaved.applicationDate;
-    contractForm.contractInputs = contractInputsList;
-    let inputList:ContractInput[] = await this.contractInputRepository.getByContractId(contractFormSaved.id);
-    contractForm.contractInputs = inputList;
-
-
-    return contractForm;
+    const contractform: ContractForm = await this.getContractForm(
+      contractFormSaved.id,
+    );
+    return contractform;
   }
   public async getContactForms(): Promise<ContractForm[]> {
-    return await this.contractFormRepository.find({relations: ["contract_input"]});
+    return await this.contractFormRepository.find({
+      relations: ['inputs'],
+    });
   }
 
   public async getContractForm(contractFormId: number): Promise<ContractForm> {
     const foundContractForm = await this.contractFormRepository.findOne(
       contractFormId,
+      { relations: ['inputs'] },
     );
     if (!foundContractForm) {
       throw new NotFoundException('No Contract Forms not found');

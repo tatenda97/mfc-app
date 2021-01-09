@@ -11,6 +11,10 @@ import { FarmEquipmentModule } from './farm-equipment/farm-equipment.module';
 import { ContractTermsModule } from './contract-terms/contract-terms.module';
 import { ContractFormModule } from './contract-form/contract-form.module';
 import { FarmerAssetModule } from './farmer-asset/farmer-asset.module';
+import { ConfigModule } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
+import { FarmAssetModule } from './farm-asset/farm-asset.module';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
@@ -32,8 +36,22 @@ import { FarmerAssetModule } from './farmer-asset/farmer-asset.module';
     ContractTermsModule,
     ContractFormModule,
     FarmerAssetModule,
+    ConfigService,
+    ConfigModule,
+    FarmAssetModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.development.env',
+      isGlobal: true,
+      load: [configuration],
+    }),
+  ],
+})
+export class AppModule {
+  //constructor(private configService: ConfigService) {}
+}

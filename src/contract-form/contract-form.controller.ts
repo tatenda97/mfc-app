@@ -18,7 +18,7 @@ export class ContractFormController {
   @Post('create')
   public async createContractForm(
     @Body() createContractFormDto: CreateContractFormDTO,
-  ): Promise<CreateContractFormDTO> {
+  ): Promise<ContractForm> {
     const contractForm = await this.contractFormService.createContractForm(
       createContractFormDto,
     );

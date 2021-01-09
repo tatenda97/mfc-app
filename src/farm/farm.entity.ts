@@ -4,8 +4,10 @@ import {
   Column,
   Entity,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { Farmer } from 'src/farmer/farmer.entity';
+import { FarmAsset } from 'src/farm-asset/farmer.asset.entity';
 
 @Entity()
 export class Farm extends BaseEntity {
@@ -26,4 +28,7 @@ export class Farm extends BaseEntity {
 
   @ManyToOne(() => Farmer, (owner: Farmer) => owner.farms)
   public owner: Farmer;
+
+  @OneToMany(() => FarmAsset, (assets: FarmAsset) => assets.farm)
+  public assets: FarmAsset[];
 }

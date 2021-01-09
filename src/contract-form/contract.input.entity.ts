@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { ContractForm } from './contract.form.entity';
 
@@ -15,7 +16,7 @@ export class ContractInput extends BaseEntity {
   @Column()
   inputName: string;
 
-  @Column({ default: 'Kuda test' })
+  @Column({ default: 'Input given to user' })
   description: string;
 
   @Column()
@@ -34,5 +35,6 @@ export class ContractInput extends BaseEntity {
   contractId: number;
 
   @ManyToOne(() => ContractForm, (contract: ContractForm) => contract.inputs)
+  @JoinColumn({ name: 'contractId' })
   public contract: ContractForm;
 }
