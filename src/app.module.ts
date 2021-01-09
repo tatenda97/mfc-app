@@ -7,15 +7,14 @@ import { FarmerModule } from './farmer/farmer.module';
 import { FarmModule } from './farm/farm.module';
 import { ContractorModule } from './contractor/contractor.module';
 import { ContractModule } from './contract/contract.module';
-import { FarmEquipmentModule } from './farm-equipment/farm-equipment.module';
 import { ContractTermsModule } from './contract-terms/contract-terms.module';
 import { ContractFormModule } from './contract-form/contract-form.module';
-import { FarmerAssetModule } from './farmer-asset/farmer-asset.module';
+
 import { ConfigModule } from '@nestjs/config';
 import { ConfigService } from '@nestjs/config';
 import { FarmAssetModule } from './farm-asset/farm-asset.module';
 import { FarmerEquipmentModule } from './farmer-equipment/farmer-equipment.module';
-import { FarmEquipmentController } from './farm-equipment/farm-equipment.controller';
+
 import configuration from './config/configuration';
 
 @Module({
@@ -34,16 +33,16 @@ import configuration from './config/configuration';
     FarmModule,
     ContractorModule,
     ContractModule,
-    FarmEquipmentModule,
+    FarmerEquipmentModule,
     ContractTermsModule,
     ContractFormModule,
-    FarmerAssetModule,
+    FarmAssetModule,
     ConfigService,
     ConfigModule,
     FarmAssetModule,
     FarmerEquipmentModule,
   ],
-  controllers: [AppController, FarmEquipmentController],
+  controllers: [AppController],
   providers: [AppService],
 })
 @Module({
