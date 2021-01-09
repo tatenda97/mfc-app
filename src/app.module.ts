@@ -14,6 +14,8 @@ import { FarmerAssetModule } from './farmer-asset/farmer-asset.module';
 import { ConfigModule } from '@nestjs/config';
 import { ConfigService } from '@nestjs/config';
 import { FarmAssetModule } from './farm-asset/farm-asset.module';
+import { FarmerEquipmentModule } from './farmer-equipment/farmer-equipment.module';
+import { FarmEquipmentController } from './farm-equipment/farm-equipment.controller';
 import configuration from './config/configuration';
 
 @Module({
@@ -39,8 +41,9 @@ import configuration from './config/configuration';
     ConfigService,
     ConfigModule,
     FarmAssetModule,
+    FarmerEquipmentModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, FarmEquipmentController],
   providers: [AppService],
 })
 @Module({

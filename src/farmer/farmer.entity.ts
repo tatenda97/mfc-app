@@ -6,6 +6,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Farm } from 'src/farm/farm.entity';
+import { FarmerEquipment } from 'src/farmer-equipment/farmer.equipment.entity';
 
 @Entity()
 export class Farmer extends BaseEntity {
@@ -32,4 +33,7 @@ export class Farmer extends BaseEntity {
 
   @OneToMany(() => Farm, (farm: Farm) => farm.owner)
   public farms: Farm[];
+
+  @OneToMany(() => FarmerEquipment, (equipments: FarmerEquipment) => equipments.farmer)
+  public equipments: FarmerEquipment[];
 }
