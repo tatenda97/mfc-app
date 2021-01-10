@@ -37,7 +37,7 @@ export class Project extends BaseEntity {
   projectType: string;
 
   @Column()
-  projectManagerId: string;
+  projectManagerId: number;
   
   @Column()
   ownerId: number;

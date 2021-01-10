@@ -23,7 +23,7 @@ export class CreateProjectDTO{
     projectType: string;
   
     @IsString()
-    projectManagerId: string;
+    projectManagerId: number;
     
      @IsNumber()
     ownerId: number;
