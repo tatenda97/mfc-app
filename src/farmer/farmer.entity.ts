@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Farm } from 'src/farm/farm.entity';
 import { FarmerEquipment } from 'src/farmer-equipment/farmer.equipment.entity';
+import { Project } from 'src/project/project.entity';
 
 @Entity()
 export class Farmer extends BaseEntity {
@@ -39,4 +40,10 @@ export class Farmer extends BaseEntity {
     (equipments: FarmerEquipment) => equipments.farmer,
   )
   public equipments: FarmerEquipment[];
+
+  @OneToMany(
+    () => Project,
+    (project: Project) => project.farmer,
+  )
+  public projects: Project[];
 }

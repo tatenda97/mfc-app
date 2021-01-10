@@ -1,4 +1,5 @@
-import { PrimaryGeneratedColumn, BaseEntity, Column, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, BaseEntity, Column, Entity, OneToMany } from 'typeorm';
+import { Project } from 'src/project/project.entity';
 
 @Entity()
 export class Contractor extends BaseEntity {
@@ -22,5 +23,8 @@ export class Contractor extends BaseEntity {
 
   @Column()
   contactPerson: string;
+
+  @OneToMany(() => Project, (project: Project) => project.contractor)
+  public projects: Project[];
 
 }
