@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { Farmer } from 'src/farmer/farmer.entity';
 import { Contractor } from 'src/contractor/contractor.entity';
+import { ProjectActivity } from 'src/project-activity/project.activity.entity';
 
 @Entity()
 export class Project extends BaseEntity {
@@ -49,6 +50,13 @@ export class Project extends BaseEntity {
   @ManyToOne(() => Contractor, (contractor: Contractor) => contractor.projects)
   @JoinColumn({ name: 'projectContractorId' })
   public contractor: Contractor;
+
+  
+    @OneToMany(
+        () => ProjectActivity,
+        (activity: ProjectActivity) => activity.project,
+      )
+      public activities: ProjectActivity[];
 
   
 }

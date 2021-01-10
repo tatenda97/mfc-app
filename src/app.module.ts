@@ -15,6 +15,7 @@ import { ConfigService } from '@nestjs/config';
 import { FarmAssetModule } from './farm-asset/farm-asset.module';
 import { FarmerEquipmentModule } from './farmer-equipment/farmer-equipment.module';
 import { ProjectModule } from './project/project.module';
+import { ProjectActivityModule } from './project-activity/project-activity.module';
 
 import configuration from './config/configuration';
 
@@ -43,6 +44,7 @@ import configuration from './config/configuration';
     FarmAssetModule,
     FarmerEquipmentModule,
     ProjectModule,
+    ProjectActivityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
