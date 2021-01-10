@@ -16,6 +16,9 @@ import { FarmAssetModule } from './farm-asset/farm-asset.module';
 import { FarmerEquipmentModule } from './farmer-equipment/farmer-equipment.module';
 import { ProjectModule } from './project/project.module';
 import { ProjectActivityModule } from './project-activity/project-activity.module';
+import { ProjectTasksModule } from './project-tasks/project-tasks.module';
+import { ProjectInputsModule } from './project-inputs/project-inputs.module';
+import { InputsModule } from './inputs/inputs.module';
 
 import configuration from './config/configuration';
 
@@ -45,6 +48,9 @@ import configuration from './config/configuration';
     FarmerEquipmentModule,
     ProjectModule,
     ProjectActivityModule,
+    ProjectTasksModule,
+    ProjectInputsModule,
+    InputsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,0 +1,46 @@
+import {
+    PrimaryGeneratedColumn,
+    BaseEntity,
+    Column,
+    Entity,
+    OneToMany,
+  } from 'typeorm';
+  import { Farm } from 'src/farm/farm.entity';
+  import { FarmerEquipment } from 'src/farmer-equipment/farmer.equipment.entity';
+  import { Project } from 'src/project/project.entity';
+  
+  @Entity()
+  export class ProjectTasks extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id: number;
+  
+    @Column()
+    taskName: string;
+  
+    @Column()
+    nationalID: string;
+  
+    @Column()
+    dateOfBirth: Date;
+  
+    @Column()
+    gender: string;
+  
+    @Column()
+    description: string;
+  
+    @OneToMany(() => Farm, (farm: Farm) => farm.owner)
+    public farms: Farm[];
+  
+    @OneToMany(
+      () => FarmerEquipment,
+      (equipments: FarmerEquipment) => equipments.farmer,
+    )
+    public equipments: FarmerEquipment[];
+  
+    @OneToMany(
+      () => Project,
+      (project: Project) => project.farmer,
+    )
+    public projects: Project[];
+  }
