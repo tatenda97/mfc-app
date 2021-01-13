@@ -28,7 +28,7 @@ export class Project extends BaseEntity {
   @Column()
   startDate: Date;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   endDate: Date;
 
   @Column()
@@ -39,7 +39,7 @@ export class Project extends BaseEntity {
 
   @Column()
   projectManagerId: number;
-  
+
   @Column()
   ownerId: number;
 
@@ -51,12 +51,9 @@ export class Project extends BaseEntity {
   @JoinColumn({ name: 'projectContractorId' })
   public contractor: Contractor;
 
-  
-    @OneToMany(
-        () => ProjectActivity,
-        (activity: ProjectActivity) => activity.project,
-      )
-      public activities: ProjectActivity[];
-
-  
+  @OneToMany(
+    () => ProjectActivity,
+    (activity: ProjectActivity) => activity.project,
+  )
+  public activities: ProjectActivity[];
 }
