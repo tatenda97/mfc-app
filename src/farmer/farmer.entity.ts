@@ -41,9 +41,6 @@ export class Farmer extends BaseEntity {
   )
   public equipments: FarmerEquipment[];
 
-  @OneToMany(
-    () => Project,
-    (project: Project) => project.farmer,
-  )
+  @OneToMany(() => Project, (project: Project) => project.farmer)
   public projects: Project[];
 }
