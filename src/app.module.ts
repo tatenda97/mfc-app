@@ -20,6 +20,7 @@ import { ProjectTasksModule } from './project-tasks/project-tasks.module';
 import { ProjectInputsModule } from './project-inputs/project-inputs.module';
 import { InputsModule } from './inputs/inputs.module';
 import { ProjectPlanModule } from './project-plan/project-plan.module';
+import { InventoryModule } from './inventory/inventory.module';
 
 import configuration from './config/configuration';
 
@@ -53,6 +54,7 @@ import configuration from './config/configuration';
     ProjectInputsModule,
     InputsModule,
     ProjectPlanModule,
+    InventoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
